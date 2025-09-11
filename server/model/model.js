@@ -1,24 +1,24 @@
 const mongoose = require('mongoose');
 
 let schema = new mongoose.Schema({
-    name : {
-        type : String,// name would be a string
+    name: {
+        type: String,// name would be a string
         required: true,// name is a required property
         unique: true // the value of name must be unique
     },
-    dosage : {
-        type : String,// dosage would be a string
+    dosage: {
+        type: String,// dosage would be a string
         required: true,// dosage is a required property
     },
-    card : {
+    card: {
         type: Number, // card would be a number
         required: true
     },
-    pack : {
+    pack: {
         type: Number,
         required: true
     },
-    perDay : {
+    perDay: {
         type: Number,
         required: true,
         unique: true
