@@ -108,5 +108,26 @@ exports.delete = (req, res) => {
                 message: "Could not delete Drug with id=" + id
             });
         });
+}
 
+// GET /api/purchase?days=30
+exports.purchaseCalc = async (req, res) => {
+    const days = parseInt(req.query.days || '30', 10);
+    if (isNaN(days) || days <= 0 || days > 3650) {
+        return res.status(400).json({ message: 'days must be a number between 1 and 3650' });
+    }
+
+    const drugs = await Drugdb.find();
+    const items = drugs.map(d => {
+        const pills = days * (d.perDay || 0);
+        const cardsToBuy = Math.ceil(pills / d.card);
+        const packsToBuy = Math.ceil(pills / d.pack);
+        return {
+            id: d._id, name: d.name, perDay: d.perDay,
+            card: d.card, pack: d.pack, days,
+            cardsToBuy, packsToBuy, ratioPerPack: d.pack / d.card
+        };
+    });
+
+    return res.json({ days, items });
 }

@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 
 let schema = new mongoose.Schema({
     name: {
-        type: String,// name would be a string
-        required: true,// name is a required property
-        unique: true // the value of name must be unique
+        type: String,
+        required: true,
+        unique: true
     },
     dosage: {
-        type: String,// dosage would be a string
-        required: true,// dosage is a required property
+        type: String,
+        required: true,
     },
     card: {
-        type: Number, // card would be a number
+        type: Number,
         required: true
     },
     pack: {
@@ -21,10 +21,10 @@ let schema = new mongoose.Schema({
     perDay: {
         type: Number,
         required: true,
-        unique: true
+        // unique: true
     },
 })
 
-const DrugDB = mongoose.model('drugs', schema);//drugs specifies the collection name, database to use was specified in connection string
+const DrugDB = mongoose.model('drugs', schema);
 
 module.exports = DrugDB;

@@ -12,9 +12,12 @@ route.get('/purchase', services.purchase);
 route.get('/add-drug', services.addDrug);
 route.get('/update-drug', services.updateDrug);
 
+route.get('/api/purchase', controller.purchaseCalc);
+
+
 // API for CRUD operations
-route.post('/api/drugs', validateDrug, controller.create);
 route.get('/api/drugs', controller.find);
+route.post('/api/drugs', validateDrug, controller.create);
 route.put('/api/drugs/:id', validateDrug, controller.update);
 route.delete('/api/drugs/:id', controller.delete);
 
